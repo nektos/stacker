@@ -1,1 +1,4 @@
 stacker~=1.7.0
+repositorytools~=4.2.5
+pycrypto~=2.6.1
+semver~=2.10.1
