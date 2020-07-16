@@ -2,3 +2,5 @@ stacker~=1.7.0
 repositorytools~=4.2.5
 semver~=2.10.1
 pycrypto~=2.6.1
+aws-sam-cli~=0.53.0
+awscli~=1.18.98

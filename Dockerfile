@@ -8,5 +8,9 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
+COPY hooks /app/hooks
+COPY lookup /app/lookup
+
+ENV PYTHONPATH "${PYTHONPATH}:/app"
 ENTRYPOINT ["stacker"]
 CMD ["-h"]
