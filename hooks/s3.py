@@ -166,7 +166,7 @@ def upload_nexus_artifact(context, provider, **kwargs):
     if coords.get('zip_path') != None:
       artifact_path = _extract_file(artifact_path, coords['zip_path'])
     code = _upload_file(s3_client=_s3_client(context, provider), path=artifact_path, bucket=variables.get('bucket', context.config.stacker_bucket), prefix=variables.get('prefix', None))
-    if variables['data_type'] == 'url':
+    if variables.get('data_type', None) == 'url':
       region = context.config.stacker_bucket_region or provider.region
       keys[artifact] = f"https://s3-{region}.amazonaws.com/{code.S3Bucket}/{code.S3Key}"
     else:
@@ -178,7 +178,7 @@ def upload_local_artifact(context, provider, **kwargs):
   variables = _get_variables(kwargs, provider, context)
   for artifact, artifact_path in variables['artifacts'].items():
     code = _upload_file(s3_client=_s3_client(context, provider), path=artifact_path, bucket=variables.get('bucket', context.config.stacker_bucket), prefix=variables.get('prefix', None))
-    if variables['data_type'] == 'url':
+    if variables.get('data_type', None) == 'url':
       region = context.config.stacker_bucket_region or provider.region
       keys[artifact] = f"https://s3-{region}.amazonaws.com/{code.S3Bucket}/{code.S3Key}"
     else:
