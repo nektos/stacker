@@ -105,7 +105,7 @@ def _download_url(url, username, password):
   return file_path
 
 def _download_artifact(group_id, artifact_id, version, nexus_url, server_id, repository='releases', extension='jar', classifier=None, **kwargs):
-  username, password = _get_maven_server_username_password(server_id)
+  username, password = _get_maven_server_username_password(server_id=server_id)
   artifact = repositorytools.RemoteArtifact(group_id, artifact_id, version, extension=extension, classifier=classifier, repo_id=repository)
   client = repositorytools.repository_client_factory(repository_url=nexus_url, user=username, password=password)
   client.resolve_artifact(artifact)
